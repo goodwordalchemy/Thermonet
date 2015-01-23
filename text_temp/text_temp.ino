@@ -4,10 +4,12 @@
   #include <Wire.h>
   #include <Suli.h>
   
+  #define DEBUG true
+  
   #define PIN_TX    7
   #define PIN_RX    8
   #define BAUDRATE  9600
-  #define PHONE_NUMBER "14152696222"
+  #define PHONE_NUMBER "16503326848"
   
   GPRS gprs(PIN_TX,PIN_RX,BAUDRATE);//RX,TX,BaudRate
   
@@ -15,7 +17,7 @@
   #define numSamples 5
   #define sensor  0 // select the input pin for the thermistor
   
-  int delayTime = delayTimeMinutes * 60 * 1000;
+  unsigned long delayTime = delayTimeMinutes * 60L * 1000L;
   
   // Steinhart - Hart variables.  Get from spreadsheet.
   float seriesResistance = 100000.0;
@@ -46,7 +48,11 @@
     dtostrf(temp, 4, 0, charbuf); // floatvar, StringLengthIncDecimalPt, numsAfterDec, charbuf
     
     gprs.sendSMS(PHONE_NUMBER, charbuf);
- 
+    
+    if(DEBUG){
+      Serial.print("Delay Time: ");
+      Serial.println(delayTime);
+    }
     delay(delayTime);   
   }
   
