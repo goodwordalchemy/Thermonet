@@ -6,7 +6,7 @@ Points.value gonna have to be Messages[item].message
 Going to mark this with "//<---"
 */
 
-// This adds 20 data points to the points collection if nothing in the Points Colection--remove
+/*// This adds 20 data points to the points collection if nothing in the Points Colection--remove
 if(Points.find({}).count() === 0){
   for(i = 0; i < 20; i++)
     Points.insert({
@@ -33,7 +33,7 @@ Template.lineChart.events({
       Points.update({_id:point._id},{$set:{value:Math.floor(Math.random() * 100)+500}});
     });
   }
-});
+});*/
 
 
 Template.lineChart.rendered = function(){
@@ -58,10 +58,10 @@ Template.lineChart.rendered = function(){
 
   var line = d3.svg.line()
     .x(function(d) {
-      return x(d.date);
+      return x(d.time); //changed from "date" to "time"
     })
     .y(function(d) {
-      return y(d.value);
+      return y(d.message); //changed from "value" to "message"
     });
 
   var svg = d3.select("#lineChart")
@@ -81,19 +81,23 @@ Template.lineChart.rendered = function(){
     .attr("y", 6)
     .attr("dy", ".71em")
     .style("text-anchor", "end") 
-    .text("Price ($)");  // this needs to become temperature
+    /*.text("Price ($)");  // this needs to become temperature*/
+    .text("temp (F)");
 
   Deps.autorun(function(){
 
     //For line below, I'm thinking:
-    // var dataset = Messages.find({}).fetch();
-    var dataset = Points.find({},{sort:{date:-1}}).fetch();  
+    /*var dataset = Points.find({},{sort:{date:-1}}).fetch();  */
+    var dataset = Messages.find({}).fetch();
 
     var paths = svg.selectAll("path.line")
       .data([dataset]); //todo - odd syntax here - should use a key function, but can't seem to get that working
 
-    x.domain(d3.extent(dataset, function(d) { return d.date; })); //return d.time
-    y.domain(d3.extent(dataset, function(d) { return d.value; })); //return d.message
+    /*x.domain(d3.extent(dataset, function(d) { return d.date; })); //return d.time
+    y.domain(d3.extent(dataset, function(d) { return d.value; })); //return d.message*/
+
+    x.domain(d3.extent(dataset, function(d) { return d.time; })); //return d.time
+    y.domain(d3.extent(dataset, function(d) { return d.message; })); //return d.message
 
     //Update X axis
     svg.select(".x.axis")

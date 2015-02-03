@@ -58,8 +58,8 @@ function getMessageList(){
         if(message.dateCreated > updateTime) {
           console.log("inserting...");
           Messages.insert({
-            message: message.body,
-            time: new Date(message.dateCreated) ,
+            message: parseInt(message.body),
+            time: new Date(message.dateCreated),
             from: message.from
           });
         }
