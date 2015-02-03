@@ -50,6 +50,7 @@ Template.lineChart.rendered = function(){
 
   var xAxis = d3.svg.axis()
     .scale(x)
+    .ticks(5) //defines labels on x axis
     .orient("bottom");
 
   var yAxis = d3.svg.axis()
