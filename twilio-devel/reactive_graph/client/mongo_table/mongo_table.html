@@ -1,0 +1,13 @@
+<template name='mongoTable'>
+	<h3>Data Table</h3>
+	<table class="table table-bordered">
+		<tr>
+			<th>Temperature</th><th>Time</th><th>Number</th>
+		</tr>
+		{{#each messages}}
+		<tr>
+			<td>{{message}}</td><td>{{time}}</td><td>{{from}}</td>
+		</tr>
+		{{/each}}
+	</table>
+</template>

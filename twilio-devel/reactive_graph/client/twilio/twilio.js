@@ -1,9 +1,3 @@
-Template.displayMessages.helpers({
-    messages: function () {
-      return Messages.find().fetch();
-    }
-  });
-
   Template.sendMessage.events({
     'click #send': function () {
       
