@@ -10,5 +10,6 @@ insecure
 jquery
 bootstrap
 accolver:twilio-meteor
-d3
 momentjs:moment
+d3js:d3
+

@@ -14,3 +14,25 @@
   stroke: steelblue;
   stroke-width: 1.5px;
 }
+
+.bar {
+  fill: steelblue;
+  
+}
+.area {
+  fill: steelblue;
+  clip-path: url(#clip);
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.brush .extent {
+  stroke: steelblue;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
